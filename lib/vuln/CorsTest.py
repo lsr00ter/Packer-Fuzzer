@@ -52,10 +52,7 @@ class CorsTest(object):
     def testStart(self):
         try:
             sslFlag = int(self.options.ssl_flag)
-            if sslFlag == 1:
-                text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False,verify=False).headers
-            else:
-                text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False).headers
+            text = requests.get(self.url, headers=self.header, timeout=6, allow_redirects=False,verify=False).headers
             self.res = text
             if 'example.org' in text['Access-Control-Allow-Origin'] and text[
                  'Access-Control-Allow-Credentials'] == 'true':

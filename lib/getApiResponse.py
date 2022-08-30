@@ -58,6 +58,7 @@ class ApiResponse(object):
 
             }
         s = requests.Session()
+        s.verify = False
         s.keep_alive = False
         sslFlag = int(self.options.ssl_flag)
         try:

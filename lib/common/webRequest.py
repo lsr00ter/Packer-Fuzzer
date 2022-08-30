@@ -57,6 +57,7 @@ class WebRequest(object): # 获取http返回的状态码
             }
 
         s = requests.Session()
+        s.verify = False
         s.keep_alive = False
         try:
             if self.mode == 1:

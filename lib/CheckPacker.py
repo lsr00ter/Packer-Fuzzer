@@ -46,10 +46,7 @@ class CheckPacker():
         headers = self.header
         url = self.url
         sslFlag = int(self.options.ssl_flag)
-        if sslFlag == 1:
-            demo = requests.get(url=url, headers=headers, proxies=self.proxy_data,verify=False).text
-        else:
-            demo = requests.get(url=url, headers=headers, proxies=self.proxy_data).text
+        demo = requests.get(url=url, headers=headers, proxies=self.proxy_data,verify=False).text
         return 1 if any(i in demo for i in self.fingerprint_html) else 0
 
     def checkStart(self):

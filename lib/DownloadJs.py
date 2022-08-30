@@ -106,10 +106,7 @@ class DownloadJs():
                 conn.commit()
                 self.log.info(Utils().tellTime() + Utils().getMyWord("{downloading}") + jsFilename)
                 sslFlag = int(self.options.ssl_flag)
-                if sslFlag == 1:
-                    jsFileData = requests.get(url=jsRealPath, headers=header, proxies=self.proxy_data, verify=False).content
-                else:
-                    jsFileData = requests.get(url=jsRealPath, proxies=self.proxy_data, headers=header).content
+                jsFileData = requests.get(url=jsRealPath, headers=header, proxies=self.proxy_data, verify=False).content
                 with open("tmp" + os.sep + tag + "_" + host + os.sep + jsTag + "." + jsFilename, "wb") as js_file:
                     js_file.write(jsFileData)
                     js_file.close()

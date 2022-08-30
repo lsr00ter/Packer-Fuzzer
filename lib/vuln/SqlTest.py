@@ -139,10 +139,7 @@ class SqlTest():
             url = self.path + "?" + "&".join(get_datas)
             # print(url)
             try:
-                if sslFlag == 1:
-                    get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
-                else:
-                    get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data,timeout=10)
+                get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
                 get_resp_text = get_resp.text
 
             # 对错误进行一个遍历
@@ -176,10 +173,7 @@ class SqlTest():
             # print(post_json)
             # print(post_data)
             try:
-                if sslFlag == 1:
-                    post_resp = requests.post(self.path,headers=self.header,data=post_data,proxies=self.proxy_data,timeout=10,verify=False)
-                else:
-                    post_resp = requests.post(self.path,headers=self.header,data=post_data,proxies=self.proxy_data,timeout=10)
+                post_resp = requests.post(self.path,headers=self.header,data=post_data,proxies=self.proxy_data,timeout=10,verify=False)
                 post_text = post_resp.text
                 post_code = post_resp.status_code
                 # json类型
@@ -200,10 +194,7 @@ class SqlTest():
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
                         }
                     try:
-                        if sslFlag == 1:
-                            post_json_resp = requests.post(self.path, data=post_json, headers=header,proxies=self.proxy_data,timeout=10,verify=False)
-                        else:
-                            post_json_resp = requests.post(self.path, data=post_json, headers=header,proxies=self.proxy_data,timeout=10)
+                        post_json_resp = requests.post(self.path, data=post_json, headers=header,proxies=self.proxy_data,timeout=10,verify=False)
                         post_json_text = post_json_resp.text
                         post_json_code = post_json_resp.status_code
                         if post_json_code == '415':  # 如果状态码还是 415 就不管了 只负责json和普通的data
@@ -285,14 +276,9 @@ class SqlTest():
 
             # 发送三个get 请求
             try:
-                if sslFlag == 1:
-                    get_resp1 = requests.get(url1,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
-                    get_resp2 = requests.get(url2,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
-                    get_resp_default = requests.get(url_default,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
-                else:
-                    get_resp1 = requests.get(url1,headers=self.header,proxies=self.proxy_data,timeout=10)
-                    get_resp2 = requests.get(url2,headers=self.header,proxies=self.proxy_data,timeout=10)
-                    get_resp_default = requests.get(url_default,headers=self.header,proxies=self.proxy_data,timeout=10)
+                get_resp1 = requests.get(url1,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
+                get_resp2 = requests.get(url2,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
+                get_resp_default = requests.get(url_default,headers=self.header,proxies=self.proxy_data,timeout=10,verify=False)
                 get_resp1_len = len(get_resp1.text)
                 get_resp2_len = len(get_resp2.text)
                 get_resp_default = len(get_resp_default.text)
@@ -355,10 +341,7 @@ class SqlTest():
             # print(post_data_default)
             # print(post_json_default) # json数据
             try:
-                if sslFlag == 1:
-                    post_resp = requests.post(self.path,header=self.header,proxies=self.proxy_data,data=post_data1,verify=False)
-                else:
-                    post_resp = requests.post(self.path,header=self.header,proxies=self.proxy_data,data=post_data1)
+                post_resp = requests.post(self.path,header=self.header,proxies=self.proxy_data,data=post_data1,verify=False)
                 post_code = post_resp.status_code
                 # 如果状态吗是 414
                 if post_code == '415':
@@ -378,18 +361,11 @@ class SqlTest():
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
                         }
-                    if sslFlag == 1:
-                        post_json_len1 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).text)
-                        post_json_len2 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json2,verify=False).text)
-                        post_json_defaule_len = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json_default,verify=False).text)
-                        post_resp_code = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).status_code
-                        post_resp_text = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).text
-                    else:
-                        post_json_len1 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1).text)
-                        post_json_len2 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json2).text)
-                        post_json_defaule_len = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json_default).text)
-                        post_resp_code = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1).status_code
-                        post_resp_text = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1).text
+                    post_json_len1 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).text)
+                    post_json_len2 = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json2,verify=False).text)
+                    post_json_defaule_len = len(requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json_default,verify=False).text)
+                    post_resp_code = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).status_code
+                    post_resp_text = requests.post(self.path,headers=header,proxies=self.proxy_data,data=post_json1,verify=False).text
                     if post_resp_code == '415':
                         pass
                     else:
@@ -401,14 +377,9 @@ class SqlTest():
                             except Exception as e:
                                 self.log.error("[Err] %s" % e)
                 else:
-                    if sslFlag == 1:
-                        post_len1 = len(requests.post(self.path,headers=self.header,data=post_data1,proxies=self.proxy_data,verify=False).text)
-                        post_len2 = len(requests.post(self.path,headers=self.header,data=post_data2,proxies=self.proxy_data,verify=False).text)
-                        post_len_default = len(requests.post(self.path,headers=self.header,data=post_data_default,proxies=self.proxy_data,verify=False).text)
-                    else:
-                        post_len1 = len(requests.post(self.path,headers=self.header,data=post_data1,proxies=self.proxy_data).text)
-                        post_len2 = len(requests.post(self.path,headers=self.header,data=post_data2,proxies=self.proxy_data).text)
-                        post_len_default = len(requests.post(self.path,headers=self.header,data=post_data_default,proxies=self.proxy_data).text)
+                    post_len1 = len(requests.post(self.path,headers=self.header,data=post_data1,proxies=self.proxy_data,verify=False).text)
+                    post_len2 = len(requests.post(self.path,headers=self.header,data=post_data2,proxies=self.proxy_data,verify=False).text)
+                    post_len_default = len(requests.post(self.path,headers=self.header,data=post_data_default,proxies=self.proxy_data,verify=False).text)
                     if (post_len1 == post_len_default) and (post_len2 != post_len_default):
                         #print("疑似存在布尔盲注")
                         self.boolen = 1
@@ -424,10 +395,7 @@ class SqlTest():
         sslFlag = int(self.options.ssl_flag)
         datas = json.loads(self.option)
         method = datas['type']
-        if sslFlag == 1:
-            default_time = requests.get(self.path, headers=self.header, proxies=self.proxy_data,verify=False).elapsed.seconds
-        else:
-            default_time = requests.get(self.path, headers=self.header, proxies=self.proxy_data).elapsed.seconds
+        default_time = requests.get(self.path, headers=self.header, proxies=self.proxy_data,verify=False).elapsed.seconds
         # get的请求
         if method == "get":
             gets = datas["get"]
@@ -447,10 +415,7 @@ class SqlTest():
             url = self.path + "?" + "&".join(get_datas)  # url
             #print(url)
             # start_time = time.time()
-            if sslFlag == 1:
-                get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data,verify=False)
-            else:
-                get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data)
+            get_resp = requests.get(url,headers=self.header,proxies=self.proxy_data,verify=False)
             # 获取响应时间
             sec = get_resp.elapsed.seconds
             #print(sec)
@@ -475,10 +440,7 @@ class SqlTest():
             #print(post_json)
             #print(post_data)
             try:
-                if sslFlag == 1:
-                    post_resp = requests.post(self.path,data=post_data,proxies=self.proxy_data,verify=False)
-                else:
-                    post_resp = requests.post(self.path,data=post_data,proxies=self.proxy_data)
+                post_resp = requests.post(self.path,data=post_data,proxies=self.proxy_data,verify=False)
                 code = post_resp.status_code
                 sec = post_resp.elapsed.seconds
 
@@ -498,10 +460,7 @@ class SqlTest():
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
                         }
-                    if sslFlag == 1:
-                        post_json_resp = requests.post(self.path, headers=header, data=post_json, proxies=self.proxy_data, verify=False)
-                    else:
-                        post_json_resp = requests.post(self.path, headers=header, data=post_json, proxies=self.proxy_data)
+                    post_json_resp = requests.post(self.path, headers=header, data=post_json, proxies=self.proxy_data, verify=False)
                     json_code = post_json_resp.status_code
                     json_sec = post_json_resp.elapsed.seconds
                     if json_code == '415':

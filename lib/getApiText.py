@@ -54,6 +54,7 @@ class ApiText(object):
                 self.options.head.split(':')[0]: self.options.head.split(':')[1]
             }
         s = requests.Session()
+        s.verify = False
         s.keep_alive = False
         sslFlag = int(self.options.ssl_flag)
         try:

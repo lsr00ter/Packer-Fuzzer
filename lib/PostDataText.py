@@ -56,12 +56,8 @@ class PostsDataText(object):
         try:
             tag = 0
             sslFlag = int(self.options.ssl_flag)
-            if sslFlag == 1:
-                text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
-                code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data,verify=False).status_code)
-            else:
-                text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data).text)
-                code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data).status_code)
+            text = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data, verify=False).text)  # 正常的返回code是int类型
+            code = str(requests.post(url, headers=headers, timeout=6, data=data, proxies=self.proxy_data,verify=False).status_code)
             if (code != "404") and (code != "415"):
                 self.res[str(jsondata)] = text
             while (code == "415" or code == "401"):
@@ -86,15 +82,9 @@ class PostsDataText(object):
                             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
                             self.options.head.split(':')[0]: self.options.head.split(':')[1]
                         }
-                    if sslFlag == 1:
-                        code = str(requests.post(url, headers=header, timeout=6, data=jsondata,proxies=self.proxy_data,allow_redirects=False,verify=False).status_code)
-                    else:
-                        code = str(requests.post(url, headers=header, timeout=6, data=jsondata,proxies=self.proxy_data,allow_redirects=False).status_code)
+                    code = str(requests.post(url, headers=header, timeout=6, data=jsondata,proxies=self.proxy_data,allow_redirects=False,verify=False).status_code)
                     if code == "200":
-                        if sslFlag == 1:
-                            text = str(requests.post(url, headers=header, timeout=6, data=jsondata, proxies=self.proxy_data,verify=False).text)  # 正常的返回code是int类型
-                        else:
-                            text = str(requests.post(url, headers=header, timeout=6, data=jsondata, proxies=self.proxy_data).text)
+                        text = str(requests.post(url, headers=header, timeout=6, data=jsondata, proxies=self.proxy_data,verify=False).text)  # 正常的返回code是int类型
                         self.res[str(jsondata)] = text
                         break
 

@@ -47,10 +47,7 @@ class ext():
             'https': self.options.proxy,
         }
         sslFlag = int(self.options.ssl_flag)
-        if sslFlag == 1:
-            testWeb = requests.get(self.options.url, proxies=proxy_data, headers=header,timeout=7,verify=False).text.strip()
-        else:
-            testWeb = requests.get(self.options.url, proxies=proxy_data, headers=header,timeout=7).text.strip()
+        testWeb = requests.get(self.options.url, proxies=proxy_data, headers=header,timeout=7,verify=False).text.strip()
         for ban in self.ban_title:
             if ban in testWeb:
                 print(Utils().tellTime() + "After a SaoCaoZuo your IP seems to be blocked by GeZhong 666666 de WAF !")
