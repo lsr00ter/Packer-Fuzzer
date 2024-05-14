@@ -13,7 +13,7 @@ from lib.common.utils import Utils
 from lib.Database import DatabaseType
 from lib.common.CreatLog import creatLog
 from docx.text.paragraph import Paragraph
-from docx.oxml.xmlchemy import OxmlElement
+from docx.oxml.parser import OxmlElement
 from lib.common.cmdline import CommandLines
 
 
